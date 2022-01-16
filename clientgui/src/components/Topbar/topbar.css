@@ -1,0 +1,97 @@
+.topbar{
+    height: 65px;
+    top: 0;
+    border-bottom: 1px solid #dfe4ea    ;
+    display: flex;
+    width: 100%;
+    color: rgb(29, 29, 29);
+    background-color: white;
+    z-index: 786;
+    position: sticky;
+    
+    align-items: center;
+}
+.leftTopbar{
+    flex: 3;
+    padding: 8px;
+    text-align: center;
+ font-family: 'Kaushan Script', cursive;
+ letter-spacing: 1.1px;
+    
+}
+.main_title{
+    cursor: pointer;
+}
+.middleTopbar{
+    flex: 5;
+
+}
+.rightTopbar{
+    flex: 4;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.searchbar{
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    align-items: center;
+}
+.searchInput{
+    padding: 8px ;
+    border: none;
+    outline: none;
+    width: 90%;
+}
+
+
+.topbarIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.topbarIconItem{
+    margin: 5px;
+    position: relative;
+    cursor: pointer;
+
+}
+.t-icon{
+    color: black;
+    font-size: 52px;
+}
+.topbarIconBadge{
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+
+.topbarLinks{
+    font-size: 14px;
+    
+    
+    font-weight: bold;
+}
+.topbarLinks span{
+    margin: 0 4px;
+}
+
+.topbarImg{
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+}

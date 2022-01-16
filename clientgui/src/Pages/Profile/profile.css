@@ -1,0 +1,87 @@
+.profile {
+  display: flex;
+}
+
+.profileRight {
+  flex: 9;
+}
+.profileRightBottom {
+  display: flex;
+}
+
+.profileImages {
+  position: relative;
+  height: 320px;
+}
+
+.profileImage {
+  position: absolute;
+  width: 150px;
+  top: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  left: 0;
+  right: 0;
+  border: 3px solid white;
+  margin: auto;
+
+}
+.coverImage {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+.profileInfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column ;
+}
+.rightbarInfoDesc{
+    padding: 15px;
+}
+.rightbarInfoItem{
+    display: flex;
+
+}
+.rightbarInfoItem span{
+    font-size: 12px;
+}
+
+.rightbarInfoItem h5{
+    letter-spacing: 1.1px;
+    margin-right: 5px;
+}
+
+.rightbarFollowings{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.following{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5px;
+    align-items: center;
+    }
+
+    .following img{
+        width: 100px;
+        height: 90px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    .following span{
+        font-size: 12px;
+        font-weight: 800;
+
+    }
+
+    .followingText{
+        margin-top: 20px;
+        
+    }
