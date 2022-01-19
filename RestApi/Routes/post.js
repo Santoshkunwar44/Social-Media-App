@@ -74,20 +74,31 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//GET TIMELINE POST
-router.get("/timeline/all", async (req, res) => {
+// GET THE ALL POST OF THE USER'S
+
+router.get("/profile/:username", async (req, res) => {
   try {
-    const currUser = await User.findById(req.body.userId);
-    const currUserPost = await Post.find({ userId: currUser._id });
-    const followesPost = await Promise.all(
-      currUser.followings.map((friendId) => {
+    const user = await User.findOne({ username: req.params.username });
+    const post = await Post.find({ userId: user._id });
+    res.status(200).send(post);
+  } catch (err) {
+    res.status(500).send({ success: false, message: err });
+  }
+});
+//GET TIMELINE POST
+
+router.get("/timeline/:userId", async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.params.userId);
+    const userPosts = await Post.find({ userId: currentUser._id });
+    const friendPosts = await Promise.all(
+      currentUser.followings.map((friendId) => {
         return Post.find({ userId: friendId });
       })
     );
-    let postArray = Object.assign([], currUserPost, followesPost);
-    res.status(200).send(postArray);
+    res.status(200).json(userPosts.concat(...friendPosts));
   } catch (err) {
-    res.status(500).send({ success: false, message: err });
+    res.status(500).json(err);
   }
 });
 

@@ -1,8 +1,9 @@
 import React from "react";
 import "./rightbar.css";
 import { users } from "../../dummydata";
-export default function Rightbar() {
-  const HomeRightbar = ({ profile }) => {
+import OnlineFriends from "../Onlinefriends/OnlineFriends";
+export default function Rightbar({ user }) {
+  const HomeRightbar = () => {
     return (
       <>
         <div className="birthdayContainr">
@@ -25,20 +26,8 @@ export default function Rightbar() {
         <div className="OnlineFriends">
           <h3>Online Friends</h3>
           <ul className="onlineFriendsWrapper">
-            {users.map((user) => (
-              <li className="onlineFriend">
-                <div className="onlineFriendImgContainer">
-                  <img
-                    className="onlineFriendImg"
-                    src={user.profilePicture}
-                    alt="onlineFriend"
-                  />
-
-                  <div className="onlineStatus"></div>
-                </div>
-
-                <span className="onlinefrinedText">{user.userName}</span>
-              </li>
+            {users.map((user, index) => (
+              <OnlineFriends key={index} user={user} />
             ))}
           </ul>
         </div>
@@ -54,25 +43,25 @@ export default function Rightbar() {
           <div className="rightbarInfoDesc">
             <div className="rightbarInfoItem">
               <h5>City :</h5>
-              <span>Nepal , Butwal</span>
+              <span>{user.city}</span>
             </div>
             <div className="rightbarInfoItem">
               <h5>From :</h5>
-              <span>Nepal , Butwal</span>
+              <span>{user.from}</span>
             </div>
             <div className="rightbarInfoItem">
               <h5>Gender:</h5>
-              <span>Male</span>
+              <span>{user.gender}</span>
             </div>
             <div className="rightbarInfoItem">
               <h5>Relationship :</h5>
-              <span>Single</span>
+              <span>{user.relationship}</span>
             </div>
           </div>
-          <h4  className="followingText">User Followings</h4>
+          <h4 className="followingText">User Followings</h4>
           <div className="rightbarFollowings">
             <div className="following">
-              <img  src="/assets/following/dayahang.jpg" alt="" />
+              <img src="/assets/following/dayahang.jpg" alt="" />
               <span>Dayahang rai</span>
             </div>
             <div className="following">
@@ -80,22 +69,21 @@ export default function Rightbar() {
               <span>Sajjan Raj Vaidya</span>
             </div>
             <div className="following">
-              <img src="/assets/following/zegerberg.jpg"  alt="" />
+              <img src="/assets/following/zegerberg.jpg" alt="" />
               <span>Mark Jugerberg</span>
             </div>
             <div className="following">
-              <img src="/assets/following/jeff.jpg"  alt="" />
+              <img src="/assets/following/jeff.jpg" alt="" />
               <span>Jeff Bejos rai</span>
             </div>
             <div className="following">
-              <img src="/assets/following/jay.jpg"  alt="" />
+              <img src="/assets/following/jay.jpg" alt="" />
               <span>Jay Shetty</span>
             </div>
             <div className="following">
-              <img src="/assets/following/bipin.jpg"  alt="" />
+              <img src="/assets/following/bipin.jpg" alt="" />
               <span>Bipin Karki</span>
             </div>
-         
           </div>
         </div>
       </>
@@ -104,7 +92,7 @@ export default function Rightbar() {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        { profile ? <ProfileRightbar/> : <HomeRightbar/>}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );

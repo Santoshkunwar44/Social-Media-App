@@ -1,6 +1,7 @@
-import {Bookmark, Chat, Event, Group, HelpOutline, Message, PlayCircleFilledOutlined, RssFeed, School, WorkOutline} from "@material-ui/icons"
+import {Bookmark, Event, Group, HelpOutline, Message, PlayCircleFilledOutlined, RssFeed, School, WorkOutline} from "@material-ui/icons"
 import "./sidebar.css";
 import { users } from "../../dummydata";
+import Friends from "../Friends/Friends";
 export default function Sidebar() {
     return (
         <div className='sidebar'>
@@ -49,12 +50,8 @@ export default function Sidebar() {
                 <ul className="sidebarFriendList">
 
                     {
-                        users.map(user=>(
-                            <li className="sidebarFriend">
-                            <img src={user.profilePicture} alt="" className="sidebarImg" />
-                            <span className="sidebarFriendName">{user.userName} </span>
-    
-                        </li>
+                        users.map((user,index)=>(
+                        <Friends key={index} user={user}/>
                         ))
                     }
                 

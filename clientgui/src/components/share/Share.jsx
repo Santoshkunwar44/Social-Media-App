@@ -6,7 +6,7 @@ export default function Share() {
       <div className="shareWrapper">
         <div className="shareTop">
           <img src="/assets/1.jpg" alt="profilePicture" className="ProfilePictureImg" />
-          <input  multiple="true" className="shareTopInput" placeholder="Post something Santosh" />
+          <input   className="shareTopInput" placeholder="Post something Santosh" />
         </div>
         <hr className="sharehr" />
         <div className="shareButtom">

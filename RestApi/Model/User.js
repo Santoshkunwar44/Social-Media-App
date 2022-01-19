@@ -43,6 +43,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       max: 50,
     },
+    gender:{
+      type:String,
+    },
     city: {
       type: String,
       max: 15,

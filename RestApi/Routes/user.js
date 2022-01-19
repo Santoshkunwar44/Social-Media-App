@@ -54,11 +54,17 @@ router.delete("/:id", async (req, res) => {
 
 //GET USER
 
-router.get("/:id", async (req, res) => {
+router.get("/", async (req, res) => {
+  const username = req.query.username;
+  const userId = req.query.userId;
+  console.log(username)
+
   try {
-    const user = await User.findById(req.params.id);
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username: username });
     const { password, ...others } = user._doc;
-    res.status(200).send({ success: true, message: others });
+    res.status(200).send({ success: true, payload: others });
   } catch (err) {
     res.status(500).send({ success: false, message: err });
   }
@@ -93,7 +99,6 @@ router.put("/:id/follow", async (req, res) => {
   }
 });
 
-
 //UNFOLLOW USER
 router.put("/:id/unfollow", async (req, res) => {
   if (req.params.id !== req.body.userId) {
@@ -121,7 +126,5 @@ router.put("/:id/unfollow", async (req, res) => {
       .send({ success: false, message: "You can't unfollow yourself" });
   }
 });
-
-
 
 module.exports = router;
