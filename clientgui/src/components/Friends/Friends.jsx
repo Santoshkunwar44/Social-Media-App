@@ -1,11 +1,28 @@
-import React from 'react'
-import "../Sidebar/sidebar.css"
-export default function Friends({user}) {
-    return (
-         <li className="sidebarFriend" >
-        <img src={user.profilePicture} alt="" className="sidebarImg" />
-        <span className="sidebarFriendName">{user.userName} </span>
+import React, { useEffect,useState } from 'react'
+import axiosCall from '../../axios';
 
-    </li>
+import "../Sidebar/sidebar.css"
+export default function Friends({ user }) {
+    const [friend, getFriend] = useState([])
+    useEffect(() => {
+        const fetchUser = async () => {
+            const response = await axiosCall.get(`/users?userId=${user}`);
+            const data = await response.data;
+
+         
+                getFriend(data);
+        };
+        fetchUser();
+
+    }, [user]);
+    console.log("frineds", friend)
+    return (
+
+
+        <li className="sidebarFriend" >
+            <img src="" alt="" className="sidebarImg" />
+            <span className="sidebarFriendName">{friend?.username} </span>
+
+        </li>
     )
 }

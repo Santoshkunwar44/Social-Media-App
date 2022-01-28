@@ -11,6 +11,8 @@ var cors = require("cors");
 const authRoute = require("./Routes/auth");
 const userRoute = require("./Routes/user");
 const postRoute = require("./Routes/post");
+const conversationRoute = require("./Routes/conversation");
+const messageRoute = require("./Routes/message");
 
 // to serve the image
 
@@ -54,4 +56,6 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/conversation", conversationRoute);
+app.use("/api/message", messageRoute);
 app.listen(8800, () => console.log("Server is active ..."));

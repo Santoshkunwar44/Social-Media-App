@@ -1,0 +1,20 @@
+.c_wrapper{
+    padding: 10px;
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    
+}
+.c_img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.c_name{
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+}

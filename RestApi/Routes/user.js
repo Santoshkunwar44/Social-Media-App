@@ -57,14 +57,14 @@ router.delete("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const username = req.query.username;
   const userId = req.query.userId;
-  console.log(username)
+  console.log(username);
 
   try {
     const user = userId
       ? await User.findById(userId)
       : await User.findOne({ username: username });
     const { password, ...others } = user._doc;
-    res.status(200).send({ success: true, payload: others });
+    res.status(200).send(others);
   } catch (err) {
     res.status(500).send({ success: false, message: err });
   }
@@ -124,6 +124,30 @@ router.put("/:id/unfollow", async (req, res) => {
     res
       .status(403)
       .send({ success: false, message: "You can't unfollow yourself" });
+  }
+});
+
+//Get the FOLLOWING FRIENDS
+
+router.get("/friends/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const friends = await Promise.all(
+      user.followings.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+
+    let friendsArr = [];
+
+    friends.map((friend) => {
+      const { username, profilePicture, _id } = friend;
+      friendsArr.push({ username, profilePicture, _id });
+    });
+
+    res.status(200).send(friendsArr);
+  } catch (err) {
+    console.log(err);
   }
 });
 

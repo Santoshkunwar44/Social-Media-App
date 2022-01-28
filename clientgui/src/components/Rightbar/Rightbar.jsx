@@ -1,8 +1,54 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./rightbar.css";
 import { users } from "../../dummydata";
 import OnlineFriends from "../Onlinefriends/OnlineFriends";
-export default function Rightbar({ user }) {
+import axiosCall from "../../axios";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/Authcontext";
+export default function Rightbar({ myusers }) {
+
+
+  const [friends, setFriends] = useState([]);
+  const {user:currentUser} = useContext(AuthContext)
+
+  // const [followed, setFollowed] = useState(
+  //   user.followings.includes(myusers?.id)
+
+  // );
+
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  // fetching the friends of the myusers
+
+  useEffect(() => {
+    const getFriends = async () => {
+      try {
+        const friendList = await axiosCall.get("/users/friends/" + myusers._id);
+        setFriends(friendList.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFriends();
+  }, [myusers]);
+
+
+
+  const handleFollow = async () => {
+    // try {
+    //   followed
+    //     ? await axiosCall.put(`/users/${myusers._id}/unfollow`, {
+    //       userId: currentUser._id,
+    //     })
+    //     : await axiosCall.put(`/users/${myusers._id}/follow`, {
+    //       userId: currentUser._id,
+    //     });
+    //   setFollowed(!followed);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+  };
+
   const HomeRightbar = () => {
     return (
       <>
@@ -10,6 +56,7 @@ export default function Rightbar({ user }) {
           <img
             className="birthdayImg"
             src="https://img.icons8.com/cotton/64/000000/birthday.png"
+            alt=""
           />
           <span className="birthdayText">
             <b>Harry </b> and <b>3 others</b> have Birthday Today
@@ -38,61 +85,61 @@ export default function Rightbar({ user }) {
   const ProfileRightbar = () => {
     return (
       <>
+        {/* {myusers.username !== currentUser.username && (
+          <div className="followdiv">
+            <button onClick={handleFollow} className="followBtn">
+              {followed ? "Unfollow" : "Follow"}
+            </button>
+          </div>
+        )} */}
         <h4>User Information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoDesc">
             <div className="rightbarInfoItem">
               <h5>City :</h5>
-              <span>{user.city}</span>
+              <span>{myusers.city}</span>
             </div>
             <div className="rightbarInfoItem">
               <h5>From :</h5>
-              <span>{user.from}</span>
+              <span>{myusers.from}</span>
             </div>
             <div className="rightbarInfoItem">
               <h5>Gender:</h5>
-              <span>{user.gender}</span>
+              <span>{myusers.gender}</span>
             </div>
             <div className="rightbarInfoItem">
               <h5>Relationship :</h5>
-              <span>{user.relationship}</span>
+              <span>{myusers.relationship}</span>
             </div>
           </div>
           <h4 className="followingText">User Followings</h4>
           <div className="rightbarFollowings">
-            <div className="following">
-              <img src="/assets/following/dayahang.jpg" alt="" />
-              <span>Dayahang rai</span>
-            </div>
-            <div className="following">
-              <img src="/assets/following/sajjan.jpg" alt="" />
-              <span>Sajjan Raj Vaidya</span>
-            </div>
-            <div className="following">
-              <img src="/assets/following/zegerberg.jpg" alt="" />
-              <span>Mark Jugerberg</span>
-            </div>
-            <div className="following">
-              <img src="/assets/following/jeff.jpg" alt="" />
-              <span>Jeff Bejos rai</span>
-            </div>
-            <div className="following">
-              <img src="/assets/following/jay.jpg" alt="" />
-              <span>Jay Shetty</span>
-            </div>
-            <div className="following">
-              <img src="/assets/following/bipin.jpg" alt="" />
-              <span>Bipin Karki</span>
-            </div>
+            {friends.map((friend) => (
+              <div className="following">
+                <img
+                  src={
+                    friend.profilePicture
+                      ? PF + friend.profilePicture
+                      : "/assets/nouser.jpg"
+                  }
+                  alt=""
+                />
+                <Link to={"/profile/" + friend.username}>
+                  {" "}
+                  <span>{friend.username}</span>{" "}
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </>
     );
   };
+
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {user ? <ProfileRightbar /> : <HomeRightbar />}
+        {myusers ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );

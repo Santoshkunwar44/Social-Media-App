@@ -1,0 +1,29 @@
+.onlineFriends {
+  padding: 8px;
+align-items: center;
+  display: flex;
+}
+.onlinePersonImage{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+.onlineFriendsName{
+    font-size: 20px;
+    font-weight: 600;
+    
+}
+.onlineFriendImageBox{
+    position: relative;
+}
+.onlineStatus{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    top: -1px;
+    right: 13px;
+    background-color: rgb(47, 255, 92);
+}

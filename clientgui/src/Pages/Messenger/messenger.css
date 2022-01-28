@@ -1,0 +1,87 @@
+.messenger {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: calc(100vh - 65px);
+}
+
+.boxtop {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
+  padding: 0 15px   ;
+}
+
+.chatMenu {
+  flex: 3;
+}
+.chatBox {
+  flex: 5.5;
+}
+.onlineFriends {
+  flex: 3.5;
+}
+
+.chatMenuWrapper,
+.chatBoxWrapper,
+.onlineFriendsWrapper {
+  padding: 20px 10px;
+
+
+  height: 100%;
+}
+
+.chatBoxWrapper {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.menuInput {
+  width: 90%;
+  border-radius: 7px;
+  padding: 8px 0;
+
+  border: none;
+  font-size: 18px;
+  margin-bottom: 7px;
+  outline: none;
+  padding-left: 15px;
+}
+
+.chatBoxBottom {
+  display: flex;
+}
+
+.chatArea {
+  width: 80%;
+  margin-left:25px;
+  margin-right: 20px;
+  padding: 10px 8px;
+  border-radius: 5px;
+  border: grey;
+  outline: none;
+  border: 1px solid grey;
+}
+.sendBtn {
+  font: 33px;
+}
+.onlineCount{
+  color: rgb(24, 130, 10);
+}
+.onlineFriendText{
+  letter-spacing: 1.1px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+.openChatSpan{
+  top: 30%;
+  position: absolute;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 1.1px;
+  cursor: pointer;
+  color: grey;
+}
